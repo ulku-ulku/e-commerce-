@@ -126,7 +126,7 @@ async function post<T>(path: string, body?: unknown): Promise<T> {
 
 export const api = {
   kpi: () => get<Kpi>("/api/kpi/summary"),
-  actionQueue: () => get<{ summary: { total_opportunity: number; action_count: number };
+  actionQueue: () => get<{ summary: { total_opportunity: number; action_count: number; low_confidence: number };
     actions: ActionItem[] }>("/api/analytics/action-queue"),
   pricing: () => get<{ summary: { total_uplift: number; actionable: number };
     items: PricingItem[] }>("/api/analytics/pricing"),

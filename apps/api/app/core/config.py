@@ -12,6 +12,13 @@ class Settings(BaseSettings):
     JWT_ALGORITHM: str = "HS256"
     JWT_EXPIRE_MINUTES: int = 1440
 
+    # CORS: virgülle ayrılmış origin listesi; "*" = hepsi (Bearer token kullandığımız için güvenli)
+    ALLOWED_ORIGINS: str = "*"
+
+    @property
+    def cors_origins(self) -> list[str]:
+        return [o.strip() for o in self.ALLOWED_ORIGINS.split(",") if o.strip()]
+
     # Sağlayıcı-bağımsız LLM (OpenAI-uyumlu uç nokta). Anahtar yoksa deterministik fallback çalışır.
     LLM_API_KEY: str = ""
     LLM_BASE_URL: str = "https://api.openai.com/v1"
